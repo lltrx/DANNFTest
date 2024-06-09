@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.use(cors());
 app.use(express.json());
 // Connect to MongoDB
@@ -16,7 +16,7 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-const todoSchema = new mongoose.Schema({
-    task: String,
-    completed: Boolean,
-  });
+//send a hello world message
+app.get("/", (req, res) => {
+  res.send("Hello world!");
+});
