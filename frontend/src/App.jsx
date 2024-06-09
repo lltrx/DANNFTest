@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  HomePage,
+  LandingPage,
+  LoginPage,
+  ProfilePage,
+  SignupPage,
+} from "./pages/";
+import { Private } from "./utils";
 
 function App() {
-  const [todos, setTodos] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:5001/")
-      .then((response) => setTodos(response.data))
-      .then(() => console.log("Data fetched successfully!"))
-      .catch((error) => console.error(error));
-  }, []);
-
   return (
-    <div className="container mx-auto">
-      <h1 className="text-3xl font-bold underline text-teal-400">
-        Hello world!
-      </h1>
-      <p className="text-lg text-gray-700">
-        {todos ? todos : "Loading data..."}
-      </p>
+    <div className="flex flex-col items-center">
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Private />}>
+            <Route path="/landing" element={<LandingPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+          </Route>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
