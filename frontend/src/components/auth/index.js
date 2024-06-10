@@ -5,3 +5,6 @@ export { default as CollectFullNameAndId } from "./CollectFullNameAndId";
 export { default as CalculateBikes } from "./CalculateBikes";
 export { default as VerifyRent } from "./VerifyRent";
 export { default as VerifyTotal } from "./VerifyTotal";
+export { default as AcceptTerms } from "./AcceptTerms";
+export { default as UploadBill } from "./UploadBill";
+export { default as CheckData } from "./CheckData";

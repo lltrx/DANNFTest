@@ -31,5 +31,5 @@ export default {
       text: "#33199C",
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 };
