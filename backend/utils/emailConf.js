@@ -4,12 +4,10 @@ const nodemailer = require("nodemailer");
 
 function sendConfirmationEmail(address, confirmationCode) {
   let transporter = nodemailer.createTransport({
-    host: 'smtp.imitate.email',
-    port: 587,
-    secure: false,
+    service: "gmail",
     auth: {
-      user: "euE_McpQ6kajOAGQA_oOfg",
-      pass: "pjlonCvmAn5mOvKpoTJq",
+      user: "tf769375@gmail.com",
+      pass: "zppk dcme ycby jgcz",
     },
     tls: {
       rejectUnauthorized: false,
