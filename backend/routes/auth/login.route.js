@@ -3,6 +3,10 @@ const login = express();
 const User = require("../../db/User");
 const jwt = require("jsonwebtoken");
 const jwtSecret = "secretkey";
+const {
+  sendConfirmationEmail,
+  generateConfirmationCode,
+} = require("../../utils/emailConf");
 
 login.post("/login", async (req, resp) => {
   if (req.body.email) {
@@ -12,15 +16,11 @@ login.post("/login", async (req, resp) => {
       return resp.send({ message: "No user found with this email" });
     }
     if (user.verifiedAccount) {
-      user = user.toObject();
-      delete user.password;
-      delete user.confirmationCode;
-      jwt.sign({ user }, jwtSecret, { expiresIn: "24h" }, (err, token) => {
-        if (err) {
-          return resp.send({ message: "Error in generating token" });
-        }
-        return resp.send({ user, auth: token });
-      });
+      const confirmationCode = generateConfirmationCode();
+      user.confirmationCode = confirmationCode;
+      await user.save();
+      sendConfirmationEmail(user.email, confirmationCode);
+      return resp.send({ message: "Confirmation code sent to your email" });
     } else {
       return resp.send({ message: "Please verify your account first" });
     }
