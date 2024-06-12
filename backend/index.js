@@ -29,6 +29,8 @@ app.get("/userStats", getAllUsers);
 app.delete("/users/:id", getAllUsers);
 app.get("/userInfo", getUserInfo);
 
-app.listen(3003, () => {
+const port = process.env.PORT || 3003;
+
+app.listen(port, () => {
   console.log("Server is running on port 3003");
 });
