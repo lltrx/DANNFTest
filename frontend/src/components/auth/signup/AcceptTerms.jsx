@@ -1,7 +1,7 @@
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { useState } from "react";
 
-export default function AcceptTerms() {
+export default function AcceptTerms({onNext}) {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = (e) => {
@@ -9,7 +9,8 @@ export default function AcceptTerms() {
   };
 
   const collectData = () => {
-    console.log(isChecked);
+    localStorage.setItem("acceptTerms", isChecked);
+    onNext();
   };
 
   return (

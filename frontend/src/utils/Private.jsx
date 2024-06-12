@@ -1,13 +1,18 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 export default function Private() {
-  const auth = localStorage.getItem("user");
+  const userString = localStorage.getItem("user");
+  const user = userString ? JSON.parse(userString) : null;
+
   return (
     <>
-      {auth ? (
+      {user ? (
         <Outlet />
       ) : (
-        <Navigate to="/login" /> && <Navigate to="/signup" />
+        <>
+          <Navigate to="/login" />
+          <Navigate to="/signup" />
+        </>
       )}
     </>
   );

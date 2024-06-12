@@ -1,13 +1,14 @@
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { useState } from "react";
 
-export default function CollectFullNameAndId() {
+export default function CollectFullNameAndId({ onNext }) {
   const [name, setName] = useState("");
-  const [id, setId] = useState("");
+  const [nationalIdNumber, setNationalIdNumber] = useState("");
 
   const collectData = () => {
-    console.log(name);
-    console.log(id);
+    localStorage.setItem("name", name);
+    localStorage.setItem("nationalIdNumber", nationalIdNumber);
+    onNext();
   };
 
   return (
@@ -29,8 +30,8 @@ export default function CollectFullNameAndId() {
         <input
           type="string"
           placeholder="رقم هويتك"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
+          value={nationalIdNumber}
+          onChange={(e) => setNationalIdNumber(e.target.value)}
           className="mt-4 mb-5 w-[600px] p-2 rounded-xl text-primary border-solid border-2 border-primary items-end text-right shadow-xl
           placeholder-primary placeholder:opacity-80 placeholder:font-light hover:shadow-2xl transition duration-500 ease-in-out"
         />

@@ -1,22 +1,41 @@
 import { MdOutlineNavigateNext } from "react-icons/md";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function VerifyTotal() {
+export default function VerifyTotal({ onNext }) {
   const [isChecked, setIsChecked] = useState(false);
+  const [total, setTotal] = useState(0);
 
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
   };
 
+  const calcauteTotal = () => {
+    let bikeRent = 3300;
+    let plate = 500;
+    let insurance = 2150;
+    let total = bikeRent + plate + insurance;
+    let numberOfMotorBikes = localStorage.getItem("numberOfMotorBikes");
+    total = total * numberOfMotorBikes;
+    setTotal(total);
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("numberOfMotorBikes")) {
+      calcauteTotal();
+    }
+  }, []);
+
   const collectData = () => {
-    console.log(isChecked);
+    localStorage.setItem("total", total);
+    localStorage.setItem("understandTheRentTotal", isChecked);
+    onNext();
   };
 
   return (
     <div className="flex flex-col items-end justify-center h-screen w-screen p-20">
       <div className="flex flex-col items-end">
         <h1 className="text-2xl font-bold text-center text-primary relative mb-2">
-          اجمالي المبلغ المطلوب سداده 5950 ريال
+          اجمالي المبلغ المطلوب سداده {total} ريال
         </h1>
       </div>
       <div className="flex flex-col items-end">

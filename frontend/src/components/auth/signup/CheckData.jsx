@@ -1,8 +1,6 @@
-export default function CheckData() {
-  const backToCollectEmail = () => {
-    console.log("Redirect to collect email");
-  };
+import { Link } from "react-router-dom";
 
+export default function CheckData() {
   return (
     <div className="flex flex-col items-end justify-center h-screen w-screen p-20">
       <div className="flex flex-col items-end">
@@ -21,15 +19,12 @@ export default function CheckData() {
       <div className="flex flex-row-reverse gap-2 items-center">
         <p className="text-primary text-right mt-4 gap-2 opacity-80">
           تستطيع
-          <a href="#" className="text-primary mr-1">
-            <span
-              onClick={backToCollectEmail}
-              className="text-primary underline underline-offset-4 hover:font-extrabold"
-            >
+          <Link className="text-primary mr-1" to="/login">
+            <span className="text-primary underline underline-offset-4 hover:font-extrabold">
               {" "}
               تسجيل الدخول
             </span>
-          </a>
+          </Link>
         </p>
         <p className="text-primary text-right mt-4  opacity-80">
           و الاطلاع على المعلومات بعد التحقق من اتمام خطوات التسجيل

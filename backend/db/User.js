@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
   email: String,
   confirmationCode: Number,
   name: String,
-  nationalIdNumber: Number,
+  nationalIdNumber: String,
   verifiedAccount: { type: Boolean, default: false },
   phoneNumber: Number,
   numberOfMotorBikes: Number,

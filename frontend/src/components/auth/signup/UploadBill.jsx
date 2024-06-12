@@ -1,16 +1,46 @@
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { FaFileUpload } from "react-icons/fa";
 import { useState } from "react";
+import axios from "axios";
 
-export default function UploadBill() {
+export default function UploadBill({ onNext }) {
   const [isChecked, setIsChecked] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState(null);
 
-  const handleCheckboxChange = (e) => {
-    setIsChecked(e.target.checked);
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setUploadedFile(file);
+      setIsChecked(true);
+      saveFileToLocalStorage(file);
+    } else {
+      setIsChecked(false);
+      setUploadedFile(null);
+    }
+  };
+
+  const saveFileToLocalStorage = (file) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      localStorage.setItem("uploadedFile", fileReader.result);
+    };
   };
 
   const collectData = () => {
-    console.log(isChecked);
+    axios
+      .post("http://localhost:3003/complete-registration", {
+        email: localStorage.getItem("email"),
+        name: localStorage.getItem("name"),
+        nationalIdNumber: localStorage.getItem("nationalIdNumber"),
+        phoneNumber: localStorage.getItem("phoneNumber"),
+        numberOfMotorBikes: localStorage.getItem("numberOfMotorBikes"),
+        bill: localStorage.getItem("uploadedFile"),
+      })
+      .then(() => {
+        localStorage.clear();
+      });
+    onNext();
   };
 
   return (
@@ -39,11 +69,7 @@ export default function UploadBill() {
           <span className="text-primary text-right text-sm ml-4">
             ارفق ايصال التحويل هنا
           </span>
-          <input
-            type="file"
-            className="hidden"
-            onChange={handleCheckboxChange}
-          />
+          <input type="file" className="hidden" onChange={handleFileChange} />
           <FaFileUpload className="inline-block w-6 h-6 rounded-lg  border-primary relative duration-200 ease-in-out" />
         </label>
       </div>

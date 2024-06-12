@@ -1,21 +1,25 @@
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { useState } from "react";
+import axios from "axios";
 
-export default function CollectEmail() {
+export default function CollectEmail({ onNext }) {
   const [email, setEmail] = useState("");
   const collectEmail = () => {
-    console.log(email);
+    axios.post("http://localhost:3003/login", { email }).then(() => {
+      localStorage.setItem("email", email);
+    });
+    onNext();
   };
 
   return (
     <div className="flex flex-col items-end justify-center h-screen w-screen p-20">
-      <h1 className="text-3xl font-bold mb-2 text-primary">اهلا و سهلا</h1>
+      <h1 className="text-3xl font-bold mb-2 text-primary">
+        {" "}
+        ! سجل دخولك الان{" "}
+      </h1>
       <div className="flex flex-col items-end">
-        <h1 className="text-2xl font-bold text-center  text-primary relative">
-          من هنا خطواتك الأولى ل شراء
-        </h1>
         <h1 className="text-2xl font-bold text-center  text-primary relative mb-20">
-          دراجة نارية ثم تأجيرها على شركات معتمدج من خلالنا
+          ل تستمتع ب ميزات تطبيقنا
         </h1>
       </div>
       <div className="flex flex-col items-end">

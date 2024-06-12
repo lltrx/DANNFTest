@@ -1,10 +1,11 @@
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { useState } from "react";
 
-export default function CalculateBikes() {
-  const [bikesNumber, setBikesNumber] = useState("");
+export default function CalculateBikes({ onNext }) {
+  const [numberOfMotorBikes, setNumberOfMotorBikes] = useState(0);
   const calculate = () => {
-    console.log(bikesNumber);
+    localStorage.setItem("numberOfMotorBikes", numberOfMotorBikes);
+    onNext();
   };
 
   return (
@@ -32,8 +33,8 @@ export default function CalculateBikes() {
         <input
           type="number"
           placeholder="اختر العدد من هنا"
-          value={bikesNumber}
-          onChange={(e) => setBikesNumber(e.target.value)}
+          value={numberOfMotorBikes}
+          onChange={(e) => setNumberOfMotorBikes(e.target.value)}
           className="mt-4 mb-5 w-[600px] p-2 rounded-xl text-primary border-solid border-2 border-primary items-end text-right shadow-xl
           placeholder-primary placeholder:opacity-80 placeholder:font-light hover:shadow-2xl transition duration-500 ease-in-out"
         />

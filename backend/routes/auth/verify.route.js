@@ -10,7 +10,7 @@ verify.post("/verify", async (req, resp) => {
     return resp.status(400).send({ message: "User not found" });
   }
 
-  if (user.confirmationCode !== code) {
+  if (user.confirmationCode !== parseInt(code)) {
     return resp.status(400).send({ message: "Invalid confirmation code" });
   }
 

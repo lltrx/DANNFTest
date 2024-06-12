@@ -1,7 +1,7 @@
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { useState } from "react";
 
-export default function VerifyRent() {
+export default function VerifyRent({ onNext }) {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = (e) => {
@@ -9,9 +9,9 @@ export default function VerifyRent() {
   };
 
   const collectData = () => {
-    console.log(isChecked);
-  }
-
+    localStorage.setItem("WantsToRent", isChecked);
+    onNext();
+  };
 
   return (
     <div className="flex flex-col items-end justify-center h-screen w-screen p-20">
