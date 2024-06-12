@@ -27,7 +27,7 @@ export default {
       secondary: "#435CDE",
       danger: "#f56565",
       success: "#4dc47d",
-      black: "#494949",
+      black: "#000",
       text: "#33199C",
     },
   },

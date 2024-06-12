@@ -1,20 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {
-  HomePage,
-  LandingPage,
-  LoginPage,
-  ProfilePage,
-  SignupPage,
-} from "./pages/";
-import { Private } from "./utils";
+import { HomePage, LoginPage, SignupPage } from "./pages/auth/";
+import { AdminPage } from "./pages/admin";
+import { ProfilePage } from "./pages/user";
+import { Private, Admin } from "./utils";
 
 function App() {
   return (
     <div className="flex flex-col items-center">
       <BrowserRouter>
         <Routes>
+          <Route element={<Admin />}>
+            <Route path="/admin" element={<AdminPage />} />
+          </Route>
           <Route element={<Private />}>
-            <Route path="/landing" element={<LandingPage />} />
             <Route path="/profile" element={<ProfilePage />} />
           </Route>
           <Route path="/" element={<HomePage />} />

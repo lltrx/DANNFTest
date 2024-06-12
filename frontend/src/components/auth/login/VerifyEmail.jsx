@@ -19,10 +19,15 @@ export default function VerifyEmail() {
     axios
       .post("http://localhost:3003/verify-login", { email, code })
       .then((response) => {
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        localStorage.setItem("auth", response.data.auth);
-        localStorage.removeItem("email");
-        navigate("/landing");
+        if (response.data.message) {
+          console.error(response.data.message);
+          return;
+        }
+        if (response.data.auth && response.data.user) {
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+          localStorage.setItem("auth", response.data.auth);
+          navigate("/landing");
+        }
       })
       .catch((error) => {
         console.error(error);

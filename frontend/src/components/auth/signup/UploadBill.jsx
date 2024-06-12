@@ -28,14 +28,28 @@ export default function UploadBill({ onNext }) {
   };
 
   const collectData = () => {
+    const formData = new FormData();
+    formData.append("email", localStorage.getItem("email"));
+    formData.append("name", localStorage.getItem("name"));
+    formData.append(
+      "nationalIdNumber",
+      localStorage.getItem("nationalIdNumber")
+    );
+    formData.append("phoneNumber", localStorage.getItem("phoneNumber"));
+    formData.append(
+      "numberOfMotorBikes",
+      localStorage.getItem("numberOfMotorBikes")
+    );
+    formData.append("totalAmount", localStorage.getItem("total"));
+    formData.append("billStatus", uploadedFile ? true : false);
+
+    if (uploadedFile) {
+      formData.append("bill", uploadedFile);
+    }
+
     axios
-      .post("http://localhost:3003/complete-registration", {
-        email: localStorage.getItem("email"),
-        name: localStorage.getItem("name"),
-        nationalIdNumber: localStorage.getItem("nationalIdNumber"),
-        phoneNumber: localStorage.getItem("phoneNumber"),
-        numberOfMotorBikes: localStorage.getItem("numberOfMotorBikes"),
-        bill: localStorage.getItem("uploadedFile"),
+      .post("http://localhost:3003/complete-registration", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       })
       .then(() => {
         localStorage.clear();

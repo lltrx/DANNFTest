@@ -9,7 +9,7 @@ import {
   AcceptTerms,
   UploadBill,
   CheckData,
-} from "../components/auth/signup/";
+} from "../../components/auth/signup/";
 import { useState } from "react";
 
 export default function SignupPage() {

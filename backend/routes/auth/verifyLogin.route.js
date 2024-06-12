@@ -14,10 +14,6 @@ verifyLogin.post("/verify-login", async (req, resp) => {
       return resp.send({ message: "No user found with this email" });
     }
 
-    console.log("User found:", user.email);
-    console.log("Confirmation code in DB:", user.confirmationCode);
-    console.log("Provided code:", code);
-
     if (user.confirmationCode === parseInt(code)) {
       user.confirmationCode = undefined;
       await user.save();

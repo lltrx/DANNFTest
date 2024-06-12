@@ -1,4 +1,4 @@
-import { CollectEmail, VerifyEmail } from "../components/auth/login/";
+import { CollectEmail, VerifyEmail } from "../../components/auth/login/";
 import { useState } from "react";
 
 export default function LoginPage() {
