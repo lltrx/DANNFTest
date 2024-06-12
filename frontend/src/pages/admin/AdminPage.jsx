@@ -66,22 +66,22 @@ export default function AdminPage() {
       />
       <div className="flex flex-col items-center justify-center w-full">
         {selectedSection === "home" && (
-          <section className="flex flex-col items-center justify-center w-full mt-40 mr-[950px]">
+          <section className="flex flex-col items-center justify-center w-full mt-40 lg:mr-[950px] sm:mr-[550px]">
             <HomeAdminPage userStats={userStats} />
           </section>
         )}
         {selectedSection === "clients" && (
-          <section className="flex flex-col items-center justify-center w-full mt-40 mr-[950px]">
+          <section className="flex flex-col items-center justify-center w-full mt-40 lg:mr-[950px] sm:mr-[550px]">
             <AdminClientsPage clients={clients} />
           </section>
         )}
         {selectedSection === "bikes" && (
-          <section className="flex flex-col items-center justify-center w-full mt-40 mr-[950px]">
+          <section className="flex flex-col items-center justify-center w-full mt-40 lg:mr-[950px] sm:mr-[550px]">
             <AdminBikesPage userStats={userStats} />
           </section>
         )}
         {selectedSection === "settings" && (
-          <section className="flex flex-col items-center justify-center w-full mt-40 mr-[950px]">
+          <section className="flex flex-col items-center justify-center w-full mt-40 lg:mr-[950px] sm:mr-[550px]">
             <AdminSettingsPage clients={clients} />
           </section>
         )}

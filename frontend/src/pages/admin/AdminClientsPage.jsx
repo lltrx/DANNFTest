@@ -49,17 +49,17 @@ export default function AdminClientsPage({ clients }) {
           <input
             type="text"
             placeholder="ابحث بالعملاء"
-            className="w-[300px] border-solid border-2 rounded-3xl text-right p-2 border-primary text-primary shadow-xl placeholder:text-xl placeholder:mr-2"
+            className="lg:w-[300px] sm:w-[200px] border-solid border-2 rounded-3xl text-right p-2 border-primary text-primary shadow-xl placeholder:text-xl placeholder:mr-2"
             value={searchQuery}
             onChange={handleSearch}
           />
         </div>
-        <div className="flex flex-col gap-10 w-[1300px] h-[700px] border-solid border-2 rounded-2xl overflow-y-auto">
-          <div className="flex flex-row-reverse gap-10 justify-evenly mt-2">
+        <div className="flex flex-col gap-10 lg:w-[1300px] lg:h-[700px] sm:w-[300px] sm:h-[200px] border-solid border-2 rounded-2xl overflow-y-auto">
+          <div className="flex lg:flex-row-reverse sm:flex-col-reverse gap-10 justify-evenly mt-2">
             <div className="w-[200px] text-right">
               <h1 className="text-2xl text-black/50">اسم العميل</h1>
             </div>
-            <div className="flex flex-row">
+            <div className="flex lg:flex-row sm:flex-col">
               <h1 className="text-2xl text-black/50">الخطوات</h1>
             </div>
             <h1 className="text-2xl text-black/50">عدد الدراجات</h1>
@@ -68,10 +68,10 @@ export default function AdminClientsPage({ clients }) {
           {filteredClients.map((client) => (
             <div
               key={client.id}
-              className="flex flex-row-reverse gap-10 justify-evenly"
+              className="flex lg:flex-row-reverse sm:flex-col- gap-10 justify-evenly"
             >
               <div className="border-solid border-2 border-black/50 p-2 rounded-2xl w-[200px] justify-end">
-                <h1 className="text-xl text-black/50 text-right">
+                <h1 className="lg:text-xl sm:text-md text-black/50 text-right">
                   {client.name}
                 </h1>
               </div>
